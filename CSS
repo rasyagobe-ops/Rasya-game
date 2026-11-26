@@ -1,0 +1,59 @@
+
+/* CYBER GAMING DECORATION */
+body{
+ transition:background .35s,color .35s;
+ background-image:
+ radial-gradient(circle at 15% 15%,#00ffe122,transparent 30%),
+ radial-gradient(circle at 85% 65%,#315cff22,transparent 30%);
+}
+.hero{
+ position:relative;
+ overflow:hidden;
+}
+.hero h1{
+ text-shadow:0 0 25px #00ffe155;
+ animation:glow 3s infinite alternate;
+}
+@keyframes glow{
+ from{text-shadow:0 0 8px #00ffe155}
+ to{text-shadow:0 0 30px #00ffe1aa}
+}
+.card{
+ position:relative;
+ overflow:hidden;
+ transition:.3s;
+}
+.card:hover{
+ transform:translateY(-8px);
+ border-color:#00ffe1;
+ box-shadow:0 0 25px #00ffe133;
+}
+section h2{
+ text-shadow:0 0 15px #00ffe144;
+}
+body.light{
+ background:#edf3fa!important;
+ color:#172438!important;
+ background-image:
+ radial-gradient(circle at 15% 15%,#00a99b20,transparent 30%),
+ radial-gradient(circle at 85% 65%,#648cff20,transparent 30%)!important;
+}
+body.light header{
+ background:#ffffffdd;
+ border-color:#cbd8e5;
+}
+body.light nav a{color:#24354b}
+body.light .card,
+body.light .contact{
+ background:#ffffff;
+ border-color:#cbd8e5;
+ box-shadow:0 5px 20px #152b4410;
+}
+body.light p{color:#53657b}
+body.light .hero h1{color:#152238}
+body.light footer{color:#64758a}
+body.light .skills span{
+ background:#dce8f3;color:#20354a;
+}
+body.light .logo,
+body.light section h2{color:#087e91}
