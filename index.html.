@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b12">
+<title>RASYA.GG | Gaming Portfolio</title>
+
+<style>
+:root{
+ --bg:#070b12;
+ --panel:#111b29;
+ --text:#f5f8ff;
+ --muted:#aab9ca;
+ --accent:#00ffe1;
+ --border:#24404d;
+}
+body.light{
+ --bg:#edf3fa;
+ --panel:#ffffff;
+ --text:#172438;
+ --muted:#53657b;
+ --accent:#008e91;
+ --border:#cbd8e5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ background:var(--bg);
+ color:var(--text);
+ font-family:Arial,sans-serif;
+ transition:.3s;
+ overflow-x:hidden;
+}
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ z-index:-1;
+ background:
+ radial-gradient(circle at 15% 15%,#00ffe122,transparent 30%),
+ radial-gradient(circle at 85% 70%,#315cff20,transparent 35%);
+}
+header{
+ position:sticky;top:0;z-index:10;
+ padding:17px 7%;
+ background:color-mix(in srgb,var(--bg) 90%,transparent);
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--border);
+ display:flex;justify-content:space-between;
+ align-items:center;gap:15px;flex-wrap:wrap;
+}
+.logo{
+ font-size:24px;font-weight:900;
+ color:var(--accent);letter-spacing:2px;
+}
+nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+nav a{
+ color:var(--text);text-decoration:none;
+ font-size:13px;font-weight:bold;
+}
+nav a:hover{color:var(--accent)}
+select,.theme{
+ padding:10px;border-radius:7px;
+ border:1px solid var(--accent);
+ background:var(--panel);color:var(--text);
+ font-weight:bold;
+}
+.theme{cursor:pointer}
+.hero{
+ min-height:570px;padding:100px 8%;
+ display:flex;flex-direction:column;
+ align-items:center;justify-content:center;
+ text-align:center;position:relative;
+}
+.hero small{
+ color:var(--accent);letter-spacing:5px;
+ font-weight:bold;
+}
+.hero h1{
+ font-size:clamp(45px,9vw,85px);
+ margin:25px 0;
+ text-shadow:0 0 30px #00ffe155;
+}
+.accent{color:var(--accent)}
+.hero p{
+ color:var(--muted);line-height:1.8;
+ max-width:600px;
+}
+.btn{
+ display:inline-block;margin-top:25px;
+ padding:14px 25px;border-radius:7px;
+ background:var(--accent);color:#061014;
+ font-weight:bold;text-decoration:none;
+}
+.btn:hover{transform:scale(1.05)}
+section{padding:75px 8%}
+.heading{text-align:center;margin-bottom:35px}
+.heading small{color:var(--accent);letter-spacing:4px}
+.heading h2{font-size:32px;margin-top:12px}
+.cards{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+ gap:20px;
+}
+.card{
+ background:var(--panel);
+ border:1px solid var(--border);
+ border-radius:15px;padding:28px;
+ transition:.3s;
+ position:relative;overflow:hidden;
+}
+.card:hover{
+ transform:translateY(-8px);
+ border-color:var(--accent);
+ box-shadow:0 0 25px #00ffe122;
+}
+.card .icon{font-size:38px}
+.card h3{color:var(--accent);margin:17px 0 12px}
+.card p{color:var(--muted);line-height:1.8;font-size:14px}
+.rank{
+ font-size:23px;color:var(--accent);
+ font-weight:900;margin:12px 0;
+}
+.profile{
+ max-width:750px;margin:auto;
+ text-align:center;color:var(--muted);
+ line-height:1.9;
+}
+.skills{
+ display:flex;justify-content:center;
+ flex-wrap:wrap;gap:12px;
+}
+.skills span{
+ background:var(--panel);
+ border:1px solid var(--border);
+ padding:13px 18px;border-radius:8px;
+ transition:.3s;
+}
+.skills span:hover{
+ border-color:var(--accent);
+ color:var(--accent);
+ transform:translateY(-4px);
+}
+.contact{
+ max-width:650px;margin:auto;
+ text-align:center;background:var(--panel);
+ border:1px solid var(--border);
+ padding:35px;border-radius:15px;
+}
+.contact p{margin:15px 0;color:var(--muted)}
+.contact a{color:var(--accent);text-decoration:none}
+footer{
+ padding:30px;text-align:center;
+ color:var(--muted);border-top:1px solid var(--border);
+}
+@keyframes pulse{
+ from{box-shadow:0 0 10px #00ffe122}
+ to{box-shadow:0 0 30px #00ffe155}
+}
+.card{animation:pulse 3s infinite alternate}
+@media(max-width:650px){
+ header{justify-content:center}
+ nav{justify-content:center}
+ .hero{min-height:480px;padding:75px 7%}
+ section{padding:55px 6%}
+ .heading h2{font-size:27px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">RASYA.GG</div>
+ <nav>
+  <a href="#about" data-t="nav1">TENTANG</a>
+  <a href="#games" data-t="nav2">GAME</a>
+  <a href="#skills" data-t="nav3">SKILL</a>
+  <a href="#contact" data-t="nav4">KONTAK</a>
+
+  <select id="language" onchange="setLanguage(this.value)">
+   <option value="id">🇮🇩 ID</option>
+   <option value="en">🇬🇧 EN</option>
+  </select>
+
+  <button class="theme" id="themeBtn" onclick="toggleTheme()">
+   ☀️ Light
+  </button>
+ </nav>
+</header>
+
+<div class="hero">
+ <small>WELCOME TO MY GAMING WORLD</small>
+ <h1>HELLO, I'M <span class="accent">RASYA</span></h1>
+ <p data-t="tagline">
+  Gamer • Technology • Never Give Up
+ </p>
+ <a href="#about" class="btn" data-t="explore">
+  EXPLORE MY PROFILE
+ </a>
+</div>
+
+<section id="about">
+ <div class="heading">
+  <small>01 / PLAYER IDENTITY</small>
+  <h2 data-t="about">ABOUT ME</h2>
+ </div>
+
+ <div class="profile">
+  <h3 class="accent">RASYA</h3>
+  <p data-t="intro">
+   Halo! Nama saya Rasya. Saya menyukai dunia gaming,
+   teknologi, strategi dan tantangan baru.
+  </p>
+  <br>
+  <p><b data-t="name">Nama</b>: Rasya</p>
+  <p><b data-t="birth">Tanggal Lahir</b>: 17 Oktober 2007</p>
+  <p><b data-t="hobby">Hobi</b>: Gaming & Technology</p>
+ </div>
+</section>
+
+<section id="games">
+ <div class="heading">
+  <small>02 / GAMING ACHIEVEMENTS</small>
+  <h2 data-t="achievement">MY HIGHEST RANK</h2>
+ </div>
+
+ <div class="cards">
+  <div class="card">
+   <div class="icon">⚔️</div>
+   <h3>MOBILE LEGENDS</h3>
+   <p data-t="highest">Highest Rank</p>
+   <div class="rank">MYTHICAL GLORY</div>
+   <p>79 STARS</p>
+  </div>
+
+  <div class="card">
+   <div class="icon">🔥</div>
+   <h3>FREE FIRE</h3>
+   <p data-t="highest">Highest Rank</p>
+   <div class="rank">GRANDMASTER</div>
+   <p>FREE FIRE PLAYER</p>
+  </div>
+
+  <div class="card">
+   <div class="icon">🎯</div>
+   <h3>PUBG MOBILE</h3>
+   <p data-t="highest">Highest Rank</p>
+   <div class="rank">ACE DOMINATOR</div>
+   <p>PUBG MOBILE PLAYER</p>
+  </div>
+ </div>
+</section>
+
+<section id="skills">
+ <div class="heading">
+  <small>03 / MY ABILITIES</small>
+  <h2 data-t="skillsTitle">MY SKILLS</h2>
+ </div>
+
+ <div class="skills">
+  <span data-t="s1">Gaming Strategy</span>
+  <span data-t="s2">Teamwork</span>
+  <span data-t="s3">Communication</span>
+  <span data-t="s4">Quick Decision</span>
+  <span data-t="s5">Problem Solving</span>
+  <span data-t="s6">Fast Learning</span>
+  <span>Technology</span>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="heading">
+  <small>04 / GET IN TOUCH</small>
+  <h2 data-t="contactTitle">CONTACT ME</h2>
+ </div>
+
+ <div class="contact">
+  <p>✉️ EMAIL</p>
+  <a href="mailto:rasyagobe@gmail.com">
+   rasyagobe@gmail.com
+  </a>
+
+  <p>📱 PHONE</p>
+  <a href="tel:088222982666">
+   088222982666
+  </a>
+ </div>
+</section>
+
+<footer>
+ © 2026 RASYA.GG — GAMING UNIVERSE
+</footer>
+
+<script>
+const words={
+ id:{
+ nav1:"TENTANG",nav2:"GAME",nav3:"SKILL",nav4:"KONTAK",
+ tagline:"Gamer • Teknologi • Pantang Menyerah",
+ explore:"LIHAT PROFIL SAYA",
+ about:"TENTANG SAYA",
+ intro:"Halo! Nama saya Rasya. Saya menyukai dunia gaming, teknologi, strategi dan tantangan baru.",
+ name:"Nama",birth:"Tanggal Lahir",hobby:"Hobi",
+ achievement:"RANK TERTINGGI SAYA",
+ highest:"Rank Tertinggi",
+ skillsTitle:"KEAHLIAN SAYA",
+ s1:"Strategi Gaming",s2:"Kerja Sama Tim",
+ s3:"Komunikasi",s4:"Pengambilan Keputusan",
+ s5:"Pemecahan Masalah",s6:"Cepat Belajar",
+ contactTitle:"HUBUNGI SAYA"
+ },
+ en:{
+ nav1:"ABOUT",nav2:"GAMES",nav3:"SKILLS",nav4:"CONTACT",
+ tagline:"Gamer • Technology • Never Give Up",
+ explore:"EXPLORE MY PROFILE",
+ about:"ABOUT ME",
+ intro:"Hello! My name is Rasya. I love gaming, technology, strategy and new challenges.",
+ name:"Name",birth:"Date of Birth",hobby:"Hobby",
+ achievement:"MY HIGHEST RANK",
+ highest:"Highest Rank",
+ skillsTitle:"MY SKILLS",
+ s1:"Gaming Strategy",s2:"Teamwork",
+ s3:"Communication",s4:"Quick Decision",
+ s5:"Problem Solving",s6:"Fast Learning",
+ contactTitle:"CONTACT ME"
+ }
+};
+
+function setLanguage(lang){
+ document.documentElement.lang=lang;
+ document.querySelectorAll("[data-t]").forEach(el=>{
+  const key=el.getAttribute("data-t");
+  if(words[lang][key])el.textContent=words[lang][key];
+ });
+ localStorage.setItem("rasyaLang",lang);
+ document.getElementById("language").value=lang;
+}
+
+function toggleTheme(){
+ document.body.classList.toggle("light");
+ const light=document.body.classList.contains("light");
+ localStorage.setItem("rasyaTheme",light?"light":"dark");
+ updateThemeButton();
+}
+
+function updateThemeButton(){
+ const light=document.body.classList.contains("light");
+ document.getElementById("themeBtn").textContent=
+ light?"🌙 Dark":"☀️ Light";
+}
+
+const savedLang=localStorage.getItem("rasyaLang")||"id";
+const savedTheme=localStorage.getItem("rasyaTheme")||"dark";
+
+setLanguage(savedLang);
+if(savedTheme==="light"){
+ document.body.classList.add("light");
+}
+updateThemeButton();
+</script>
+
+</body>
+</html>
